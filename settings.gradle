@@ -1,0 +1,3 @@
+rootProject.name = 'webP2p'
+
+include 'web', 'core'
