@@ -17,9 +17,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-    private UserService userService;
+    protected UserService userService;
 
     @Autowired
+
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -28,7 +29,8 @@ public class UserController {
     public ModelAndView listUsers() {
         ModelAndView modelAndView = new ModelAndView("userList");
         List<User> users = userService.listAllUser();
-        modelAndView.addObject("userList", users);
+        modelAndView.addObject("users", users);
+
         return modelAndView;
     }
 

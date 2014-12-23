@@ -50,7 +50,6 @@
         <th>操作</th>
     </tr>
     </thead>
-    <tbody>
     <c:forEach var="user" items="${users}">
     <tr class="user_line">
         <td><input type="checkbox" name="selected_user_id" value="${user.id}" /></td>
@@ -68,10 +67,10 @@
     </table>
 </div>
 
-<script src="../lib/js/jquery-1.11.1.min.js"></script>
-<script src="../lib/js/bootstrap.min.js"></script>
-<script src="../lib/js/underscore.min.js"></script>
-<script src="../js/jquery_webmvc/select_all_users.js"></script>
+<script src="../src/main/webapp/WEB-INF/lib/js/jquery-1.11.1.min.js"></script>
+<script src="../src/main/webapp/WEB-INF/lib/js/bootstrap.min.js"></script>
+<script src="../src/main/webapp/WEB-INF/lib/js/underscore.min.js"></script>
+<script src="../src/main/webapp/WEB-INF/js/jquery_webmvc/select_all_users.js"></script>
 
 
 </body>

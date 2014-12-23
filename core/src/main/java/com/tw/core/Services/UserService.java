@@ -3,13 +3,18 @@ package com.tw.core.Services;
 import com.tw.core.DAO.UserDAO;
 import com.tw.core.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.persistence.Entity;
 import java.util.List;
 
 /**
  * Created by taozhang on 12/19/14.
  */
+@Service
 public class UserService {
+
+
     UserDAO userDAO;
 
     @Autowired
@@ -19,5 +24,13 @@ public class UserService {
 
     public List<User> listAllUser() {
         return userDAO.findAll();
+    }
+
+    public UserDAO getUserDAO() {
+        return userDAO;
+    }
+
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
     }
 }
