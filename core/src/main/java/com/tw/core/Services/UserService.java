@@ -26,11 +26,4 @@ public class UserService {
         return userDAO.findAll();
     }
 
-    public UserDAO getUserDAO() {
-        return userDAO;
-    }
-
-    public void setUserDAO(UserDAO userDAO) {
-        this.userDAO = userDAO;
-    }
 }

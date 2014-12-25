@@ -15,12 +15,11 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/")
 public class UserController {
     protected UserService userService;
 
     @Autowired
-
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -31,7 +30,7 @@ public class UserController {
         List<User> users = userService.listAllUser();
         modelAndView.addObject("users", users);
 
-        return modelAndView;
+        return null;
     }
 
 }
