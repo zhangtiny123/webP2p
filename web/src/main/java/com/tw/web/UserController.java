@@ -30,7 +30,7 @@ public class UserController {
         List<User> users = userService.listAllUser();
         modelAndView.addObject("users", users);
 
-        return null;
+        return modelAndView;
     }
 
 }
