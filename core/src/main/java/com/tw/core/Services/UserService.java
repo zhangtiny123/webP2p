@@ -26,4 +26,28 @@ public class UserService {
         return userDAO.findAll();
     }
 
+    public User findOne(long id) {
+        return null;
+    }
+
+
+    public void create(User user) {
+
+    }
+
+    public void update(User user) {
+
+    }
+
+    public void delete(long id) {
+
+    }
+
+    public void deleteAll(long[] ids) {
+
+    }
+
+    public List<User> search(String keyword) {
+        return null;
+    }
 }
