@@ -17,11 +17,11 @@ angular
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'views/users.html',
+                templateUrl: 'views/main.html',
                 controller: 'UsersController'
             })
             .when('/new', {
-                templateUrl: 'views/new.html',
+                templateUrl: 'views/register.html',
                 controller: 'UsersNewController'
             })
             .otherwise({
