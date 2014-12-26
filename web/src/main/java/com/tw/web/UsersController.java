@@ -28,10 +28,12 @@ public class UsersController {
         this.passwordService = passwordService;
     }
 
+
     @RequestMapping(method = RequestMethod.GET)
     public List<User> findAll() {
         return userService.listAllUser();
     }
+
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
     public ResponseEntity<User> findOne(@PathVariable("userId") long id) {
@@ -44,6 +46,7 @@ public class UsersController {
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
+
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
@@ -51,6 +54,7 @@ public class UsersController {
         passwordService.encryptPassword(user);
         response.setHeader("Location", request.getRequestURL().append("/").append(user.getId()).toString());
     }
+
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
@@ -65,11 +69,13 @@ public class UsersController {
         userService.delete(id);
     }
 
+
     @RequestMapping(value = "/:batch", method = RequestMethod.DELETE )
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAll(@RequestBody long[] ids) {
         userService.deleteAll(ids);
     }
+
 
     @RequestMapping(value = "/:search", method = RequestMethod.GET)
     public List<User> search( @RequestParam(value = "keyword") String keyword) {

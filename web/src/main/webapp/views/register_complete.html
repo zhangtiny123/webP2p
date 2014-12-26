@@ -20,26 +20,23 @@
     <form role="form">
         <div class="form-group">
             <label>User name</label>
-            <input type="text" class="form-control " placeholder="User name" ng-model="user.name">
+            <input type="text" required="required" class="form-control " placeholder="User name" ng-model="user.name">
         </div>
         <div class="form-group">
             <label>Id number</label>
-            <input type="number" class="form-control" placeholder="Enter ID number" ng-model="user.email">
+            <input type="number" required="required" class="form-control" placeholder="Enter ID number" ng-model="user.id_number">
         </div>
         <div class="form-group">
             <label>Birthday</label>
-            <input type="date" class="form-control" ng-model="user.age">
+            <input type="date" required="required" class="form-control" ng-model="user.birthday">
         </div>
         <div class="form-group">
             <label>role</label><br/>
-            <form class="">
+            <form class="" required="required">
                 <input type="radio" ng-model="user.role" value="Investor">     Investor <br/>
                 <input type="radio" ng-model="user.role" value="Borrower">     Borrower <br/>
             </form>
-
         </div>
-
-
         <button type="submit" class="btn btn-default pull-right" ng-click="create()">sign in</button>
     </form>
 </div>

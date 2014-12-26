@@ -44,7 +44,7 @@ angular.module('webP2p')
         }
 
         $scope.go_to_create_user = function(){
-            if(localStorage.length == 0 || localStorage["user_base_info"] ==null) {
+            if(localStorage.length == 0 || localStorage["user_base_info"] =="") {
                 $location.path("/register");
             }
             else {
