@@ -1,7 +1,10 @@
+/**
+ * Created by taozhang on 12/26/14.
+ */
 angular.module('webP2p')
-    .controller('RegisterController', function ($scope, $resource, $location) {
+    .controller('RegisterCompleteController', function ($scope, $resource, $location) {
         var User = $resource("/web/api/v1/users/");
-        $scope.user = {};
+        console.log(JSON.parse(localStorage["user_base_info"]));
         //$scope.create = function(){
         //    var localUser = new User($scope.user);
         //    localUser.$save().then(function(result){
@@ -20,9 +23,5 @@ angular.module('webP2p')
 
         $scope.go_to_login_page = function() {
             $location.path("/login")
-        }
-
-        $scope.to_complete_information = function() {
-            $location.path("/register_complete")
         }
     });

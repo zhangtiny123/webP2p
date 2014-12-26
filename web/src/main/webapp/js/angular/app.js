@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-    .module('userManagement', [
+    .module('webP2p', [
         'ngResource',
         'ngRoute',
         'checklist-model'
@@ -18,11 +18,19 @@ angular
         $routeProvider
             .when('/', {
                 templateUrl: 'views/main.html',
-                controller: 'UsersController'
+                controller: 'WelcomeController'
             })
-            .when('/new', {
+            .when('/register', {
                 templateUrl: 'views/register.html',
-                controller: 'UsersNewController'
+                controller: 'RegisterController'
+            })
+            .when('/login', {
+                templateUrl: 'views/login.html',
+                controller: 'LoginController'
+            })
+            .when('/register_complete', {
+                templateUrl: 'views/register_complete.html',
+                controller: 'RegisterCompleteController'
             })
             .otherwise({
                 redirectTo: '/'

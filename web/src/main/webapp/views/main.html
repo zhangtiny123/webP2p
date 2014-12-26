@@ -1,19 +1,24 @@
 <div class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">管理界面</a>
+            <a class="navbar-brand" href="javascript:;">WAR2014</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">用户管理</a></li>
+                <li class="active"><a href="javascript:;">welcome</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class=""><a href="javascript:;" ng-click="go_to_create_user()">register</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class=""><a href="javascript:;" ng-click="go_to_login_page()">login</a></li>
             </ul>
         </div>
     </div>
 </div>
 <div class="container">
     <div class="form-group input-group ">
-        <button type="button" class="btn btn-primary btn " ng-click="go_to_create_user()">注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;册</button>
-        <button type="button" class="btn btn-default btn "  ng-click="delete_all_selected_users()">批量删除</button>
+        <button type="button" class="btn btn-primary btn " ng-click="go_to_create_user()">sign in now</button>
     </div>
     <div class="form-group input-group ">
         <input type="search" class="form-control" />
@@ -30,10 +35,10 @@
         <tr>
             <th><input type="checkbox" ng-model="selectedAll" ng-change="select_all_or_select_none()"/></th>
             <th>ID</th>
-            <th>用户名</th>
+            <th>user name</th>
             <th>Email</th>
-            <th>年龄</th>
-            <th>操作</th>
+            <th>age</th>
+            <th>operation</th>
         </tr>
         </thead>
         <tbody>
@@ -44,7 +49,7 @@
                 <td> {{user.email}} </td>
                 <td> {{user.age}} </td>
                 <td>
-                    <button class="btn" ng-click="deleteUser(user.id)">删除 </button>
+                    <button class="btn" ng-click="deleteUser(user.id)">delete </button>
                 </td>
             </tr>
         </tbody>

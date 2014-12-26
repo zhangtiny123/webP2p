@@ -1,14 +1,7 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name partyBidApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the partyBidApp
- */
-angular.module('userManagement')
-    .controller('UsersController', function ($scope, $location, $resource,$http) {
+angular.module('webP2p')
+    .controller('WelcomeController', function ($scope, $location, $resource,$http) {
 
         var User = $resource("/web/api/v1/users/:userId");
         $scope.users = User.query();
@@ -51,7 +44,17 @@ angular.module('userManagement')
         }
 
         $scope.go_to_create_user = function(){
-            $location.path("/new");
+            if(localStorage.length == 0 || localStorage["user_base_info"] ==null) {
+                $location.path("/register");
+            }
+            else {
+                $location.path("/register_complete");
+            }
+
+        }
+
+        $scope.go_to_login_page = function() {
+            $location.path("/login")
         }
 
     });
