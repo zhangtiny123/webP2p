@@ -13,8 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * Created by twer on 7/24/14.
+ * Created by taozhang on 12/23/14.
  */
+
 @RestController
 @RequestMapping("/api/v1/users")
 public class UsersController {
