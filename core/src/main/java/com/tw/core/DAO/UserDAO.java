@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.NamedQuery;
 import java.util.List;
 
 
@@ -28,5 +27,13 @@ public class UserDAO {
     public List<User> findAll() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         return entityManager.createQuery("select u from User u").getResultList();
+    }
+
+    @Transactional
+    public void createUser(User user) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.persist(user);
+        entityManager.getTransaction().commit();
     }
 }

@@ -48,7 +48,7 @@ public class UsersController {
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
         userService.create(user);
-        passwordService.encryptPassword(user);
+        //passwordService.encryptPassword(user);
         response.setHeader("Location", request.getRequestURL().append("/").append(user.getId()).toString());
     }
 

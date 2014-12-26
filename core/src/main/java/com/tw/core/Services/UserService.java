@@ -1,6 +1,7 @@
 package com.tw.core.Services;
 
 import com.tw.core.DAO.UserDAO;
+import com.tw.core.Exception.P2pException;
 import com.tw.core.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class UserService {
 
 
     public void create(User user) {
-
+        userDAO.createUser(user);
     }
 
     public void update(User user) {

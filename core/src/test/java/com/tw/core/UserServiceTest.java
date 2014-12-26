@@ -36,4 +36,22 @@ public class UserServiceTest {
         assertThat(userList.get(1).getAge(), is(17));
         assertThat(userList.get(1).getEmail(), is("jerry@abc.com"));
     }
+
+    @Transactional
+    @Rollback
+    @Test
+    public void should_return_true_when_create_user_successful() {
+        User user = new User();
+        user.setName("testName");
+        user.setPassword("testPassword");
+        user.setEmail("testEmail+++++");
+        user.setAge(18);
+
+        List<User> userList = userService.listAllUser();
+
+        userService.create(user);
+        List<User> userListAddedItem = userService.listAllUser();
+
+        assertThat(userList.size()+1, is(userListAddedItem.size()));
+    }
 }
