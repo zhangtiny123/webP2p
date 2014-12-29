@@ -4,6 +4,7 @@
 angular.module('webP2p')
     .controller('RegisterCompleteController', function ($scope, $resource, $location) {
         var User = $resource("/web/api/v1/users/");
+        console.info(User);
         var temp = {};
         $scope.user = {};
 
@@ -14,10 +15,12 @@ angular.module('webP2p')
             $scope.user.password = temp.password;
             console.log($scope.user);
             var localUser = new User($scope.user);
-            localUser.$save().then(function(result){
+            console.log(typeof localUser);
+            console.log(localUser);
+            localUser.save().then(function(result){
                 $location.path("/");
+                localStorage["user_base_info"] = "";
             });
-            localStorage["user_base_info"] = "";
         };
 
 

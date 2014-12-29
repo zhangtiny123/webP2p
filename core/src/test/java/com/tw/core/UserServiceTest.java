@@ -10,6 +10,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import javax.transaction.Transactional;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -31,21 +35,27 @@ public class UserServiceTest {
     public void should_return_all_the_user_in_database_when_called_listAllUser_function(){
         List<User> userList = userService.listAllUser();
 
-        assertThat(userList.size(), is(6));
         assertThat(userList.get(1).getName(), is("Jerry"));
-        assertThat(userList.get(1).getAge(), is(17));
         assertThat(userList.get(1).getEmail(), is("jerry@abc.com"));
     }
 
     @Transactional
     @Rollback
     @Test
-    public void should_return_true_when_create_user_successful() {
+    public void should_return_true_when_create_user_successful() throws ParseException {
         User user = new User();
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "1990-02-03";
+        java.sql.Date birthday = new java.sql.Date(dateFormat.parse(dateString).getTime());
+        System.out.println(birthday);
+
         user.setName("testName");
         user.setPassword("testPassword");
         user.setEmail("testEmail+++++");
-        user.setAge(18);
+        user.setIdNumber("510000199002034689");
+        user.setRole(Role.INVESTOR);
+        user.setBirthday(birthday);
 
         List<User> userList = userService.listAllUser();
 
