@@ -32,7 +32,6 @@ public class UserServiceTest {
     UserService userService;
 
     @Transactional
-    @Rollback
     @Test
     public void should_return_all_the_user_in_database_when_called_listAllUser_function(){
         List<User> userList = userService.listAllUser();
@@ -58,7 +57,6 @@ public class UserServiceTest {
     }
 
     @Transactional
-    @Rollback
     @Test
     public void should_return_true_when_create_user_successful() throws ParseException {
         User user = new User();
@@ -78,9 +76,9 @@ public class UserServiceTest {
 
         assertThat(userList.size()+1, is(userListAddedItem.size()));
     }
-
-    @After
-    public void rollback_when_tested () throws ParseException  {
-        userService.deleteUserWithID(7);
-    }
+//
+//    @After
+//    public void rollback_when_tested () throws ParseException  {
+//        userService.deleteUserWithID(7);
+//    }
 }
