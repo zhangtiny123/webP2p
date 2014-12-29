@@ -35,10 +35,11 @@
         <tr>
             <th><input type="checkbox" ng-model="selectedAll" ng-change="select_all_or_select_none()"/></th>
             <th>ID</th>
-            <th>user name</th>
+            <th>User Name</th>
+            <th>Role</th>
             <th>Email</th>
-            <th>age</th>
-            <th>operation</th>
+            <th>Id Number</th>
+            <th>Operation</th>
         </tr>
         </thead>
         <tbody>
@@ -46,8 +47,9 @@
                 <td><input type="checkbox" ng-model="user.selected"/></td>
                 <td> {{user.id}}</td>
                 <td> {{user.name}} </td>
+                <td> {{user.role}} </td>
                 <td> {{user.email}} </td>
-                <td> {{user.age}} </td>
+                <td>{{user.idNumber}}</td>
                 <td>
                     <button class="btn" ng-click="deleteUser(user.id)">delete </button>
                 </td>

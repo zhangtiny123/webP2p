@@ -3,8 +3,9 @@
 angular.module('webP2p')
     .controller('WelcomeController', function ($scope, $location, $resource,$http) {
 
-        var User = $resource("/web/api/v1/users/:userId");
-        $scope.users = User.get();
+        var User = $resource("/web/api/v1/users/");
+        $scope.users = User.query();
+        console.log($scope.users)
 
         $scope.deleteUser = function(userId){
             User.delete({userId:userId}, function(){
