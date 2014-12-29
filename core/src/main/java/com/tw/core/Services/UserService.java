@@ -32,8 +32,13 @@ public class UserService {
     public User findOne(long id) {
         return null;
     }
+
     public User findByPrimaryId(long id) {
         return userDAO.findByPrimaryId(id);
+    }
+
+    public User findByEmail(String email) {
+        return userDAO.findByEmail(email);
     }
 
     public void create(User user) throws P2pException {
