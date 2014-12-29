@@ -1,5 +1,6 @@
 package com.tw.web;
 
+import com.tw.core.Exception.P2pException;
 import com.tw.core.Services.PasswordService;
 import com.tw.core.Services.UserService;
 import com.tw.core.User;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -50,9 +52,14 @@ public class UsersController {
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
-        userService.create(user);
-        //passwordService.encryptPassword(user);
-        response.setHeader("Location", request.getRequestURL().append("/").append(user.getId()).toString());
+        try {
+            userService.create(user);
+            //passwordService.encryptPassword(user);
+            response.setHeader("Location", request.getRequestURL().append("/").append(user.getId()).toString());
+        } catch (P2pException e) {
+            response.addHeader("status", "error");
+            response.addHeader(e.code.toString(), e.data.toString());
+        }
     }
 
 
@@ -66,7 +73,7 @@ public class UsersController {
     @RequestMapping(value = "/{userId}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("userId") long id) {
-        userService.delete(id);
+        userService.deleteUserWithID(id);
     }
 
 

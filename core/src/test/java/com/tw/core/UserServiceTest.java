@@ -1,6 +1,8 @@
 package com.tw.core;
 
+import com.tw.core.Exception.P2pException;
 import com.tw.core.Services.UserService;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,26 +44,43 @@ public class UserServiceTest {
     @Transactional
     @Rollback
     @Test
+    public void should_throws_p2p_exception_when_create_user_that_without_email () {
+        User user = new User();
+        user.setName("testName");
+        user.setPassword("testPassword");
+        user.setEmail("");
+
+        try {
+            userService.create(user);
+        } catch (P2pException e) {
+            assertThat(e.code, is("100"));
+        }
+    }
+
+    @Transactional
+    @Rollback
+    @Test
     public void should_return_true_when_create_user_successful() throws ParseException {
         User user = new User();
-
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dateString = "1990-02-03";
         java.sql.Date birthday = new java.sql.Date(dateFormat.parse(dateString).getTime());
-        System.out.println(birthday);
-
         user.setName("testName");
         user.setPassword("testPassword");
         user.setEmail("testEmail+++++");
         user.setIdNumber("510000199002034689");
         user.setRole(Role.INVESTOR);
         user.setBirthday(birthday);
-
         List<User> userList = userService.listAllUser();
 
         userService.create(user);
         List<User> userListAddedItem = userService.listAllUser();
 
         assertThat(userList.size()+1, is(userListAddedItem.size()));
+    }
+
+    @After
+    public void rollback_when_tested () throws ParseException  {
+        userService.deleteUserWithID(7);
     }
 }

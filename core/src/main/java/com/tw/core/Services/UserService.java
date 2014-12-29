@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import javax.persistence.Entity;
 import java.util.List;
 
+import static util.Verify.verifyUser;
+
 /**
  * Created by taozhang on 12/19/14.
  */
@@ -30,9 +32,12 @@ public class UserService {
     public User findOne(long id) {
         return null;
     }
+    public User findByPrimaryId(long id) {
+        return userDAO.findByPrimaryId(id);
+    }
 
-
-    public void create(User user) {
+    public void create(User user) throws P2pException {
+        verifyUser(user);
         userDAO.createUser(user);
     }
 
@@ -40,8 +45,8 @@ public class UserService {
 
     }
 
-    public void delete(long id) {
-
+    public void deleteUserWithID(long id) {
+        userDAO.deleteUserWithID(id);
     }
 
     public void deleteAll(long[] ids) {
