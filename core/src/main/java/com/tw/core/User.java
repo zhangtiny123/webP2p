@@ -1,6 +1,7 @@
 package com.tw.core;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by taozhang on 12/19/14.
@@ -14,6 +15,9 @@ public class User {
     @GeneratedValue
     private long id;
 
+    @Column(name = "ID_NUMBER")
+    private String idNumber;
+
     @Column(name = "NAME")
     private String name;
 
@@ -23,8 +27,12 @@ public class User {
     @Column(name = "EMAIL")
     private String email;
 
-    @Column(name = "AGE")
-    private int age;
+    @Column(name = "BIRTHDAY")
+    private Date birthday;
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "ROLE")
+    private Role role;
 
     public User() {
     }
@@ -37,28 +45,20 @@ public class User {
         this.id = id;
     }
 
+    public String getIdNumber() {
+        return idNumber;
+    }
+
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public String getPassword() {
@@ -69,4 +69,27 @@ public class User {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }

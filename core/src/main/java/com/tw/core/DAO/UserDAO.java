@@ -4,7 +4,9 @@ import com.tw.core.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import sun.text.normalizer.ICUData;
 
+import javax.management.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
@@ -25,8 +27,14 @@ public class UserDAO {
         entityManager = entityManagerFactory.createEntityManager();
     }
 
+    @Transactional
     public List<User> findAll() {
         return entityManager.createQuery("select u from User u").getResultList();
+    }
+
+    @Transactional
+    public User findByPrimaryId(long id) {
+        return entityManager.find(User.class, id);
     }
 
     @Transactional
@@ -44,9 +52,8 @@ public class UserDAO {
     }
 
     @Transactional
-    public void deleteUser(User user) {
-        entityManager.getTransaction().begin();
+    public void deleteUserWithID(long id) {
+        User user = entityManager.find(User.class, id);
         entityManager.remove(user);
-        entityManager.getTransaction().commit();
     }
 }

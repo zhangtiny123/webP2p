@@ -32,7 +32,9 @@ public class UserService {
     public User findOne(long id) {
         return null;
     }
-
+    public User findByPrimaryId(long id) {
+        return userDAO.findByPrimaryId(id);
+    }
 
     public void create(User user) throws P2pException {
         verifyUser(user);
@@ -43,8 +45,8 @@ public class UserService {
 
     }
 
-    public void delete(long id) {
-
+    public void deleteUserWithID(long id) {
+        userDAO.deleteUserWithID(id);
     }
 
     public void deleteAll(long[] ids) {

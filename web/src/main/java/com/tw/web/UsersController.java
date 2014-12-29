@@ -73,7 +73,7 @@ public class UsersController {
     @RequestMapping(value = "/{userId}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("userId") long id) {
-        userService.delete(id);
+        userService.deleteUserWithID(id);
     }
 
 
