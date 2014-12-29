@@ -1,5 +1,6 @@
 package com.tw.core;
 
+import com.tw.core.Exception.P2pException;
 import com.tw.core.Services.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,10 +32,27 @@ public class UserServiceTest {
     public void should_return_all_the_user_in_database_when_called_listAllUser_function(){
         List<User> userList = userService.listAllUser();
 
-        assertThat(userList.size(), is(6));
+//        assertThat(userList.size(), is(6));
         assertThat(userList.get(1).getName(), is("Jerry"));
         assertThat(userList.get(1).getAge(), is(17));
         assertThat(userList.get(1).getEmail(), is("jerry@abc.com"));
+    }
+
+    @Transactional
+    @Rollback
+    @Test
+    public void should_throws_p2p_exception_when_create_user_that_without_email () {
+        User user = new User();
+        user.setName("testName");
+        user.setPassword("testPassword");
+        user.setAge(18);
+        List<User> userList = userService.listAllUser();
+
+        try {
+            userService.create(user);
+        } catch (P2pException e) {
+            assertThat(e.code, is("100"));
+        }
     }
 
     @Transactional
@@ -46,7 +64,6 @@ public class UserServiceTest {
         user.setPassword("testPassword");
         user.setEmail("testEmail+++++");
         user.setAge(18);
-
         List<User> userList = userService.listAllUser();
 
         userService.create(user);

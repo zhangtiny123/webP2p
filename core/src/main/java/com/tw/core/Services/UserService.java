@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import javax.persistence.Entity;
 import java.util.List;
 
+import static util.Verify.verifyUser;
+
 /**
  * Created by taozhang on 12/19/14.
  */
@@ -32,7 +34,8 @@ public class UserService {
     }
 
 
-    public void create(User user) {
+    public void create(User user) throws P2pException {
+        verifyUser(user);
         userDAO.createUser(user);
     }
 
