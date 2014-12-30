@@ -41,7 +41,6 @@ public class UserServiceTest {
     }
 
     @Transactional
-    @Rollback
     @Test
     public void should_throws_p2p_exception_when_create_user_that_without_email () {
         User user = new User();
@@ -54,6 +53,24 @@ public class UserServiceTest {
         } catch (P2pException e) {
             assertThat(e.code, is("100"));
         }
+    }
+
+    @Transactional
+    @Test
+    public void delete_test_user () throws ParseException {
+        User user = new User();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "1990-02-03";
+        java.sql.Date birthday = new java.sql.Date(dateFormat.parse(dateString).getTime());
+        user.setName("testName");
+        user.setPassword("testPassword");
+        user.setEmail("testEmail+++++");
+        user.setIdNumber("510000199002034689");
+        user.setRole(Role.INVESTOR);
+        user.setBirthday(birthday);
+
+        User user1 = userService.findByEmail("testEmail+++++");
+        userService.deleteUserWithID(user1.getId());
     }
 
     @Transactional
@@ -75,10 +92,9 @@ public class UserServiceTest {
         List<User> userListAddedItem = userService.listAllUser();
 
         assertThat(userList.size()+1, is(userListAddedItem.size()));
+
+
+        User user1 = userService.findByEmail("testEmail+++++");
+        userService.deleteUserWithID(user1.getId());
     }
-//
-//    @After
-//    public void rollback_when_tested () throws ParseException  {
-//        userService.deleteUserWithID(7);
-//    }
 }

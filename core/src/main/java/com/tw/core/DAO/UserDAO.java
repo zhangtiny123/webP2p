@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -36,6 +37,14 @@ public class UserDAO {
     }
 
     @Transactional
+    public User findByEmail(String email) {
+        String sql = "select u from User u where u.email = :name" ;
+        Query query = entityManager.createQuery(sql);
+        query.setParameter("name", email);
+        return (User) query.getSingleResult();
+    }
+
+    @Transactional
     public void createUser(User user) {
         entityManager.getTransaction().begin();
         entityManager.persist(user);
@@ -51,7 +60,9 @@ public class UserDAO {
 
     @Transactional
     public void deleteUserWithID(long id) {
+        entityManager.getTransaction().begin();
         User user = entityManager.find(User.class, id);
         entityManager.remove(user);
+        entityManager.getTransaction().commit();
     }
 }
