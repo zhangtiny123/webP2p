@@ -37,6 +37,6 @@
                 <input type="radio" ng-model="user.role" value="Borrower" required>     Borrower <br/>
             </form>
         </div>
-        <button type="submit" class="btn btn-default pull-right" ng-click="create()">sign in</button>
+        <button type="submit" class="btn btn-default pull-right" ng-disabled="is_disabled()" ng-click="create()">sign in</button>
     </form>
 </div>

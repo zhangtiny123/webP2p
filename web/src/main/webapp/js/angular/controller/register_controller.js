@@ -16,9 +16,8 @@ angular.module('webP2p')
             }
         }
 
-        function is_mail_legal(email) {
-            var email_reg =  /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-            return email_reg.test(email);
+        $scope.is_disabled = function() {
+            return $scope.user.email == null || $scope.user.password == null || $scope.user.re_password == null;
         }
 
         $scope.go_to_welcome_page = function() {
@@ -27,5 +26,10 @@ angular.module('webP2p')
 
         $scope.go_to_login_page = function() {
             $location.path("/login")
+        }
+
+        function is_mail_legal(email) {
+            var email_reg =  /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+            return email_reg.test(email);
         }
     });

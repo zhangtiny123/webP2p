@@ -24,6 +24,11 @@ angular.module('webP2p')
             });
         };
 
+        $scope.is_disabled = function() {
+            return $scope.user.name == null || $scope.user.idNumber || $scope.user.birthday || $scope.user.role;
+        }
+
+
 
         $scope.go_to_welcome_page = function() {
             $location.path("/")
