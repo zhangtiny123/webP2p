@@ -89,7 +89,15 @@ public class User {
         return role;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
+//    public void setRole(Role role) {
+//        this.role = role;
+//    }
+    public void setRole(String role) {
+        if (role.equals("Investor")) {
+            this.role = Role.INVESTOR;
+        }
+        else if (role.equals("Borrower")) {
+            this.role = Role.BORROWER;
+        }
+     }
 }

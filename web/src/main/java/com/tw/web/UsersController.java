@@ -1,6 +1,7 @@
 package com.tw.web;
 
 import com.tw.core.Exception.P2pException;
+import com.tw.core.Role;
 import com.tw.core.Services.PasswordService;
 import com.tw.core.Services.UserService;
 import com.tw.core.User;
@@ -12,6 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -54,11 +59,9 @@ public class UsersController {
     public void create(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
         try {
             userService.create(user);
-            //passwordService.encryptPassword(user);
             response.setHeader("Location", request.getRequestURL().append("/").append(user.getId()).toString());
         } catch (P2pException e) {
-            response.addHeader("status", "error");
-            response.addHeader(e.code.toString(), e.data.toString());
+            e.printStackTrace();
         }
     }
 

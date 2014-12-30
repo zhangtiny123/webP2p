@@ -3,7 +3,7 @@
 angular.module('webP2p')
     .controller('WelcomeController', function ($scope, $location, $resource,$http) {
 
-        var User = $resource("/web/api/v1/users/");
+        var User = $resource("/web/api/v1/users/:userId");
         $scope.users = User.query();
         console.log($scope.users)
 
