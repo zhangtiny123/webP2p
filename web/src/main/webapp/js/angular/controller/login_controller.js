@@ -5,8 +5,6 @@
 
 angular.module('webP2p')
     .controller('LoginController', function ($scope, $resource, $location) {
-
-
         $scope.go_to_welcome_page = function() {
             $location.path("/");
         };

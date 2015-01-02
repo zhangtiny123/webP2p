@@ -2,10 +2,8 @@
 
 angular.module('webP2p')
     .controller('WelcomeController', function ($scope, $location, $resource,$http) {
-
         var User = $resource("/web/api/v1/users/:userId");
         $scope.users = User.query();
-        console.log($scope.users)
 
         $scope.deleteUser = function(userId){
             User.delete({userId:userId}, function(){
@@ -51,11 +49,9 @@ angular.module('webP2p')
             else {
                 $location.path("/register_complete");
             }
-
         }
 
         $scope.go_to_login_page = function() {
             $location.path("/login")
         }
-
     });

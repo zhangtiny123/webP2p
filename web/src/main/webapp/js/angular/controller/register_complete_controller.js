@@ -12,10 +12,8 @@ angular.module('webP2p')
         $scope.create = function(){
             $scope.user.email = temp.email;
             $scope.user.password = temp.password;
-            console.log($scope.user);
             var localUser = new User($scope.user);
             localUser.$save(function(result){
-                console.log(result);
                 $location.path("/");
                 localStorage["user_base_info"] = "";
             });
