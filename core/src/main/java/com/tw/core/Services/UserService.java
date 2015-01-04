@@ -1,12 +1,12 @@
 package com.tw.core.Services;
 
 import com.tw.core.DAO.UserDAO;
-import com.tw.core.Exception.P2pException;
+import com.tw.core.Exceptions.P2pException;
+import com.tw.core.Exceptions.UserNotFoundException;
 import com.tw.core.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Entity;
 import java.util.List;
 
 import static util.Verify.verifyUser;
@@ -29,12 +29,13 @@ public class UserService {
         return userDAO.findAll();
     }
 
-    public User findOne(long id) {
-        return null;
-    }
+    public User findOne(long id) throws UserNotFoundException {
+        User user = userDAO.findByPrimaryId(id);
+        if (user == null) {
+            throw new UserNotFoundException("User Not Found!");
+        }
+        return user;
 
-    public User findByPrimaryId(long id) {
-        return userDAO.findByPrimaryId(id);
     }
 
     public User findByEmail(String email) {
@@ -47,15 +48,17 @@ public class UserService {
     }
 
     public void update(User user) {
-
+        userDAO.updateUser(user);
     }
 
-    public void deleteUserWithID(long id) {
-        userDAO.deleteUserWithID(id);
+    public void deleteUserByID(long id) {
+        userDAO.deleteUserByID(id);
     }
 
     public void deleteAll(long[] ids) {
-
+        for (long id : ids) {
+            userDAO.deleteUserByID(id);
+        }
     }
 
     public List<User> search(String keyword) {

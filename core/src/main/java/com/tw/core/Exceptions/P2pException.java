@@ -1,4 +1,4 @@
-package com.tw.core.Exception;
+package com.tw.core.Exceptions;
 
 /**
  * Created by Wenjie Chen on 12/26/14.

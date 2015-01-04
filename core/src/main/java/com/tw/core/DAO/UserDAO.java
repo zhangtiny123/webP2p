@@ -59,7 +59,7 @@ public class UserDAO {
     }
 
     @Transactional
-    public void deleteUserWithID(long id) {
+    public void deleteUserByID(long id) {
         entityManager.getTransaction().begin();
         User user = entityManager.find(User.class, id);
         entityManager.remove(user);

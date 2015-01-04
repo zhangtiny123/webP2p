@@ -1,7 +1,7 @@
 package com.tw.web;
 
-import com.tw.core.Exception.P2pException;
-import com.tw.core.Role;
+import com.tw.core.Exceptions.P2pException;
+import com.tw.core.Exceptions.UserNotFoundException;
 import com.tw.core.Services.PasswordService;
 import com.tw.core.Services.UserService;
 import com.tw.core.User;
@@ -12,11 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -43,7 +38,7 @@ public class UsersController {
 
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-    public ResponseEntity<User> findOne(@PathVariable("userId") long id) {
+    public ResponseEntity<User> findOne(@PathVariable("userId") long id) throws UserNotFoundException {
         User user = userService.findOne(id);
 
         if (user == null) {
@@ -76,7 +71,7 @@ public class UsersController {
     @RequestMapping(value = "/{userId}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("userId") long id) {
-        userService.deleteUserWithID(id);
+        userService.deleteUserByID(id);
     }
 
 
